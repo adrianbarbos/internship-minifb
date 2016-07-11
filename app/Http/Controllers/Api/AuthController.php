@@ -48,7 +48,7 @@ class AuthController extends Controller
             ], 400);
         }
 
-        if(User::whereEmail($request->input('email'))) {
+        if(User::whereEmail($request->input('email'))->exists()) {
             return response([
                 'message' => 'The email has already been taken.'
             ], 409);

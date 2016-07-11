@@ -21,6 +21,9 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function(){
 
 });
 
+//TODO edit user avatar + add user avatar picture to post
+//TODO edit email and password for user
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
