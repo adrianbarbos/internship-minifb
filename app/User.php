@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($value);
     }
+    
+    /**
+     * @param $value
+     * @return \Illuminate\Contracts\Routing\UrlGenerator|string
+     */
+    public function getAvatarAttribute($value) {
+        return $value ? url($value) : null;
+    }
 }

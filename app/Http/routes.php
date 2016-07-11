@@ -12,6 +12,8 @@ Route::group(['prefix' => 'api', 'namespace' => 'Api'], function(){
     Route::post('register', 'AuthController@register');
 
     Route::group(['middleware' => 'auth.api'], function(){
+        Route::post('user/{user}', 'AuthController@update');
+        
         Route::get('post', 'PostsController@index');
         Route::get('post/{post}', 'PostsController@show');
         Route::post('post', 'PostsController@create');

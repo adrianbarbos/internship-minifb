@@ -38,7 +38,7 @@ class Post extends Model
      * @var array
      */
     protected $appends = [
-        'isOwner'
+        'isOwner', 'readable_created_at', 'readable_updated_at'
     ];
 
     /**
@@ -47,6 +47,22 @@ class Post extends Model
      */
     public function getIsOwnerAttribute($value) {
         return $this->user_id == User::whereApiToken(request()->bearerToken())->first()->id;
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getReadableCreatedAtAttribute($value) {
+        return $this->created_at->diffForHumans();
+    }
+
+    /**
+     * @param $value
+     * @return mixed
+     */
+    public function getReadableUpdatedAtAttribute($value) {
+        return $this->updated_at->diffForHumans();
     }
 
     /**
@@ -63,6 +79,6 @@ class Post extends Model
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user() {
-        return $this->belongsTo('App\User')->select(['id', 'name','surname']);
+        return $this->belongsTo('App\User')->select(['id', 'name','surname', 'avatar']);
     }
 }
